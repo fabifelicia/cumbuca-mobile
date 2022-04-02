@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: '85%',
-    marginTop: 50,
+    marginTop: 20,
     paddingLeft: 20,
     borderWidth: 1,
     borderRadius: 20,
-    borderColor: '#000'
+    borderColor: '#FF949E'
   }
 })

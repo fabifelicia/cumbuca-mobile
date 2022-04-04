@@ -5,7 +5,7 @@ export function Input(props) {
   return (
     <View style={styles.cardContainer}>
       <Text style={styles.label}>{props.label}</Text>
-      <TextInput style={styles.textInput} placeholder={props.placeholder} />
+      <TextInput style={styles.textInput} placeholder={props.placeholder} onChangeText={props.onChangeText}/>
     </View>
   )
 }

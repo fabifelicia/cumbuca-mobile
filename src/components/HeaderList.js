@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
         width: '90%',        
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly'
     }
 })

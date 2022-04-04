@@ -24,19 +24,19 @@ export function Form() {
         label='Produto'
         placeholder='Nome do Produto'
         onChangeText={setProduto}
-        value={produto}
+        
       />
       <Input
         label='Quantidade'
         placeholder='Quantidade no Estoque'
         onChangeText={setQtd}
-        value={qtd}
+        
       />
       <Input
         label='Valor'
         placeholder='Valor Unitario'
         onChangeText={setValor}
-        value={valor}
+        
       />
 
       <TouchableOpacity style={styles.btn} onPress={handleSubmit}>

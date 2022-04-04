@@ -10,54 +10,18 @@ import {
 } from 'react-native'
 import { Header } from '../components/Header'
 import { HeaderList } from '../components/HeaderList'
-import { Input } from '../components/Input'
+import { Form } from '../components/Form'
 
 export default function Home() {
-  const [produto, setProduto] = useState('')
-  const [qtd, setQtd] = useState(0)
-  const [valor, setValor] = useState(0)
 
-  function handleSubmit() {
-    const count = 0
-
-    const newProduto = {
-      id: count++,
-      produto,
-      qtd,
-      valor
-    }
-
-    console.log(newProduto)
-  }
+  
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style='light' />
       <Header />
       <Text style={styles.title}>Incluir Produto</Text>
-      <View style={styles.card}>
-        <Input
-          label='Produto'
-          placeholder='Nome do Produto'
-          onChangeText={setProduto}
-          value={produto}
-        />
-        <Input
-          label='Quantidade'
-          placeholder='Quantidade no Estoque'
-          onChangeText={setQtd}
-          value={qtd}
-        />
-        <Input
-          label='Valor'
-          placeholder='Valor Unitario'
-          onChangeText={setValor}
-          value={valor}
-        />
-
-        <TouchableOpacity style={styles.btn} onPress={handleSubmit}>
-          <Text style={styles.textBtn}>Incluir</Text>
-        </TouchableOpacity>
-      </View>
+      <Form />
       <Text style={styles.title}>Lista de Produtos</Text>
       <HeaderList />
       <ScrollView></ScrollView>

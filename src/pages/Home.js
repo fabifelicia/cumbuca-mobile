@@ -1,21 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import {
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  ScrollView,
-  View,
-  TouchableOpacity
-} from 'react-native'
+import { StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native'
 import { Header } from '../components/Header'
 import { HeaderList } from '../components/HeaderList'
 import { Form } from '../components/Form'
 
 export default function Home() {
-
-  
-  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style='light' />

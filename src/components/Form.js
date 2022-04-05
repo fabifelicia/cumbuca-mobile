@@ -7,9 +7,11 @@ export function Form() {
   const [produto, setProduto] = useState('')
   const [qtd, setQtd] = useState(0)
   const [valor, setValor] = useState(0)
+  const [ count, setCount ] = useState(0)
 
   function handleSubmit() {
     const newProduto = {
+      id: setCount(count + 1),
       produto,
       qtd,
       valor

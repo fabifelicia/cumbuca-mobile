@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Header } from '../components/Header'
 import { HeaderList } from '../components/HeaderList'
 import { Form } from '../components/Form'
 
+
 export default function Home() {
+  const [data, setData] = useState([])
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style='light' />

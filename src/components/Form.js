@@ -1,23 +1,33 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { Input } from './Input'
+
+import uuid from 'react-native-uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
+import { Input } from './Input'
 
 export function Form() {
   const [produto, setProduto] = useState('')
   const [qtd, setQtd] = useState(0)
   const [valor, setValor] = useState(0)
-  const [ count, setCount ] = useState(0)
-
-  function handleSubmit() {
-    const newProduto = {
-      id: setCount(count + 1),
-      produto,
-      qtd,
-      valor
+  
+  
+  async function handleSubmit() {
+    try {
+      const id = uuid.v4()
+  
+      const newProduto = { 
+        id,     
+        produto,
+        qtd,
+        valor
+      }
+  
+      await AsyncStorage.setItem('@cumbucamobile:saveproducts', JSON.stringify(newProduto))
+      
+    } catch (error) {      
+      console.log(error)      
     }
-
-    console.log(newProduto)
   }
 
   return (

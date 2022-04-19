@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -9,6 +9,8 @@ export function Form() {
   const [produto, setProduto] = useState("");
   const [qtd, setQtd] = useState(0);
   const [valor, setValor] = useState(0);
+  
+  
 
   async function handleSubmit() {
     try {
@@ -17,13 +19,13 @@ export function Form() {
       );
 
       const id = response ? JSON.parse(response).length + 1 : 1;
-
+      
       const newProduto = {
         id,
         produto,
         qtd,
         valor,
-      };
+      }
 
       const previousList = response ? JSON.parse(response) : [];
       const data = [...previousList, newProduto];
@@ -31,11 +33,15 @@ export function Form() {
       await AsyncStorage.setItem(
         "@cumbucamobile:saveproducts",
         JSON.stringify(data)
-      );
+      );     
+      
+      
     } catch (error) {
       console.log(error);
     }
   }
+
+
 
   return (
     <View style={styles.card}>
@@ -43,16 +49,19 @@ export function Form() {
         label="Produto"
         placeholder="Nome do Produto"
         onChangeText={setProduto}
+        value={produto}
       />
       <Input
         label="Quantidade"
         placeholder="Quantidade no Estoque"
         onChangeText={setQtd}
+        value={qtd}
       />
       <Input
         label="Valor"
         placeholder="Valor Unitario"
         onChangeText={setValor}
+        value={valor}
       />
 
       <TouchableOpacity style={styles.btn} onPress={handleSubmit}>
@@ -64,8 +73,7 @@ export function Form() {
 
 const styles = StyleSheet.create({
   card: {
-    width: "90%",
-    marginTop: 10,
+    width: "90%",    
     padding: 10,
     alignItems: "center",
     borderRadius: 10,

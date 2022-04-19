@@ -15,9 +15,9 @@ export function HeaderList() {
 
 const styles = StyleSheet.create({
     headerList: {
-        width: '95%',        
+        width: '100%',        
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-evenly',        
     }
 })

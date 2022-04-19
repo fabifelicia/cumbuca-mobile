@@ -11,13 +11,15 @@ export default function Home() {
 
   async function handleFetchData() {
     const response = await AsyncStorage.getItem("@cumbucamobile:saveproducts");
-    const data = response ? JSON.parse(response) : [];
+    const data = response ? JSON.parse(response) : [];    
     setData(data);
   }
 
   useEffect(() => {
     handleFetchData();
   }, []);
+
+ 
 
   return (
     <SafeAreaView style={styles.container}>

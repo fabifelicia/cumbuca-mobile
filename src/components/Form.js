@@ -14,7 +14,7 @@ export function Form() {
   
   async function handleSubmit() {
     try {
-      const id = uuid.v4()
+      const id = (await (AsyncStorage.getItem('@cumbucamobile:saveproducts'))).length  + 1
   
       const newProduto = { 
         id,     
@@ -24,7 +24,8 @@ export function Form() {
       }
   
       await AsyncStorage.setItem('@cumbucamobile:saveproducts', JSON.stringify(newProduto))
-      
+      console.log(newProduto)
+
     } catch (error) {      
       console.log(error)      
     }

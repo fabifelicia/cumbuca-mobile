@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, SafeAreaView, Text, ScrollView } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, FlatList } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Header } from '../components/Header'
 import { HeaderList } from '../components/HeaderList'
 import { Form } from '../components/Form'
 
 
+
 export default function Home() {
   const [data, setData] = useState([])
+  
+
+  async function handleFetchData() {
+    const response = await AsyncStorage.getItem('@cumbucamobile:saveproducts')
+    const data = response ? JSON.parse(response) : {}
+    setData([data])
+    
+  }
+
+  useEffect(() => {
+    handleFetchData()
+  }, [])
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style='light' />
@@ -17,7 +31,19 @@ export default function Home() {
       <Form />
       <Text style={styles.title}>Lista de Produtos</Text>
       <HeaderList />
-      <ScrollView></ScrollView>
+      <FlatList 
+        data={data}
+        keyExtractor={item => item.id}
+        renderItem={({item}) =>
+        <>
+          <Text>{item.id}</Text>
+          <Text style={{color: 'red'}}>{item.produto}</Text>
+          <Text>{item.qtd}</Text>
+          <Text>{item.valor}</Text>
+          <Text>{(item.qtd * item.valor)}</Text>
+        </> 
+      }
+      />
     </SafeAreaView>
   )
 }

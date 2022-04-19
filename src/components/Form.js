@@ -22,9 +22,14 @@ export function Form() {
         qtd,
         valor
       }
+
+      const response = await AsyncStorage.getItem('@cumbucamobile:saveproducts')
+      const previousList = response ? JSON.parse(response) : []
+
+      const data = [...previousList, newProduto]
   
-      await AsyncStorage.setItem('@cumbucamobile:saveproducts', JSON.stringify(newProduto))
-      console.log(newProduto)
+      await AsyncStorage.setItem('@cumbucamobile:saveproducts', JSON.stringify(data))
+      
 
     } catch (error) {      
       console.log(error)      

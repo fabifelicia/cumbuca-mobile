@@ -7,17 +7,17 @@ export function HeaderList() {
       <Text>ID</Text>
       <Text>Produto</Text>
       <Text>Qtd</Text>
-      <Text>Valor Unitário</Text>
-      <Text>Valor Total</Text>
+      <Text>Valor</Text>
+      <Text>Total</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     headerList: {
-        width: '90%',        
+        width: '95%',        
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-around'
     }
 })

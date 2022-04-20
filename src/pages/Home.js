@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, SafeAreaView, Text, FlatList, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -11,7 +11,7 @@ export default function Home() {
 
   async function handleFetchData() {
     const response = await AsyncStorage.getItem("@cumbucamobile:saveproducts");
-    const data = response ? JSON.parse(response) : [];
+    const data = response ? JSON.parse(response) : [];    
     setData(data);
   }
 
@@ -29,6 +29,7 @@ export default function Home() {
     setData(data);
   }
 
+  
   useEffect(() => {
     handleFetchData();
   }, []);

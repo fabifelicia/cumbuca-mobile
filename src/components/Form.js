@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,8 +9,6 @@ export function Form() {
   const [produto, setProduto] = useState("");
   const [qtd, setQtd] = useState(0);
   const [valor, setValor] = useState(0);
-  
-  
 
   async function handleSubmit() {
     try {
@@ -18,14 +16,29 @@ export function Form() {
         "@cumbucamobile:saveproducts"
       );
 
-      const id = response ? JSON.parse(response).length + 1 : 1;
-      
+      const array = JSON.parse(response)
+      let id;  
+      if (!response) {
+        id = 1;
+      } else {
+        array.sort((a, b) => a.id - b.id);
+        let indice = array.findIndex(
+          (item, index) => item.id != index + 1
+          );
+          
+        if (indice === -1) {
+          id = Number(array.length) + 1;
+        } else { 
+          id = Number(indice) + 1;
+        }
+      }
+
       const newProduto = {
         id,
         produto,
         qtd,
         valor,
-      }
+      };
 
       const previousList = response ? JSON.parse(response) : [];
       const data = [...previousList, newProduto];
@@ -33,15 +46,12 @@ export function Form() {
       await AsyncStorage.setItem(
         "@cumbucamobile:saveproducts",
         JSON.stringify(data)
-      );     
-      
-      
+      );
+
     } catch (error) {
       console.log(error);
     }
   }
-
-
 
   return (
     <View style={styles.card}>
@@ -73,7 +83,7 @@ export function Form() {
 
 const styles = StyleSheet.create({
   card: {
-    width: "90%",    
+    width: "90%",
     padding: 10,
     alignItems: "center",
     borderRadius: 10,
